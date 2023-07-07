@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
+import 'message_interface.dart';
 
 class UserPage extends StatefulWidget {
   _UserPageState createState() => _UserPageState();
 }
 
 class _UserPageState extends State<UserPage> {
-  static TextButton user_interface(String name, String image) {
+  TextButton user_interface(String name, String image) {
     return TextButton(
-      onPressed: () {},
+      onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => NewPage()),
+        );
+      },
       style: ButtonStyle(
         backgroundColor: MaterialStateProperty.all<Color>(
             Color.fromARGB(120, 255, 255, 255)),

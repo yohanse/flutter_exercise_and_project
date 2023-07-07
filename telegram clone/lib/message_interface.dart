@@ -1,27 +1,42 @@
 import 'package:flutter/material.dart';
-import 'user_page.dart';
 
-class MyWidget extends StatefulWidget {
+class message extends StatefulWidget {
   final String name;
   final String image;
 
-  MyWidget({required this.name, required this.image});
+  message({required this.name, required this.image});
 
   @override
-  _MyWidgetState createState() => _MyWidgetState();
+  _messageState createState() => _messageState();
 }
 
-class _MyWidgetState extends State<MyWidget> {
+class _messageState extends State<message> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title:
-            Text(widget.title), // Access the title from the widget's instance
+        backgroundColor: Colors.blue,
+        title: Row(
+          children: [
+            CircleAvatar(
+              radius: 20,
+              backgroundImage: AssetImage('images/${widget.image}.jpg'),
+            ),
+            SizedBox(
+              width: 10,
+            ),
+            Text(
+              widget.name,
+              style: TextStyle(
+                color: Color.fromARGB(255, 255, 255, 255),
+              ),
+            ),
+          ],
+        ), // Access the title from the widget's instance
       ),
       body: Center(
         child: Text(
-            'This is ${widget.title}'), // Access the title directly from the state
+            'This is'), // Access the title directly from the state
       ),
     );
   }
