@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'data.dart';
 
@@ -13,28 +15,54 @@ class message extends StatefulWidget {
 }
 
 class _messageState extends State<message> {
-  List<Row> generatemessage(id) {
-    List<Row> user = [];
-    for (int i = 0; i < userMessage[id].length; i++) {
-      MainAxisAlignment shows = MainAxisAlignment.start;
-      if (i % 2 == 0) {
-        shows = MainAxisAlignment.end;
-      }
-
+  List<Widget> generatemessage(id) {
+    List<Widget> user = [];
+    for (int i = 0; i < min(userMessage[id][0].length, userMessage[id][1].length); i++) {
       user.add(
         Row(
-          mainAxisAlignment: shows,
+          mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Padding(
-              padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+              padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
               child: Text(
-                userMessage[id][i],
+                userMessage[id][0][i],
                 style: TextStyle(
                   fontSize: 20,
+                  fontFamily: "BacasimeAntique",
                 ),
               ),
             ),
           ],
+        ),
+      );
+
+      user.add(
+        SizedBox(
+          height: 25,
+        ),
+      );
+
+      user.add(
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Padding(
+              padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
+              child: Text(
+                userMessage[id][1][i],
+                style: TextStyle(
+                  fontSize: 20,
+                  fontFamily: "BacasimeAntique",
+                ),
+              ),
+            ),
+          ],
+        ),
+      );
+
+      user.add(
+        SizedBox(
+          height: 25,
         ),
       );
     }
@@ -64,8 +92,14 @@ class _messageState extends State<message> {
           ],
         ), // Access the title from the widget's instance
       ),
-      body: Column(
-        children: generatemessage(widget.id),
+      body: Padding(
+        padding: EdgeInsets.only(top: 10),
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: generatemessage(widget.id),
+          ),
+        ),
       ),
     );
   }

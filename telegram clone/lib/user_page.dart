@@ -11,7 +11,8 @@ class _UserPageState extends State<UserPage> {
       onPressed: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => message(name: name, image: image, id: id)),
+          MaterialPageRoute(
+              builder: (context) => message(name: name, image: image, id: id)),
         );
       },
       style: ButtonStyle(
@@ -38,12 +39,26 @@ class _UserPageState extends State<UserPage> {
     );
   }
 
+  List<Widget> user_generater() {
+    List<Widget> result = [
+      user_interface("Yohanse Mehabaw", "yohanse", 0),
+      SizedBox(
+        width: 600,
+        child: Divider(
+          color: Color.fromARGB(255, 0, 0, 0),
+        ),
+      ),
+      user_interface("Ruth Assefa", "ruth", 1)
+    ];
+    return result;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Telegram",
+          "User",
           style: TextStyle(
             color: Colors.white,
           ),
@@ -54,16 +69,7 @@ class _UserPageState extends State<UserPage> {
         color: Color.fromARGB(120, 255, 255, 255),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            user_interface("Yohanse Mehabaw", "yohanse", 0),
-            SizedBox(
-              width: 600,
-              child: Divider(
-                color: Color.fromARGB(255, 0, 0, 0),
-              ),
-            ),
-            user_interface("Ruth Assefa", "ruth", 1)
-          ],
+          children: user_generater(),
         ),
       ),
     );
