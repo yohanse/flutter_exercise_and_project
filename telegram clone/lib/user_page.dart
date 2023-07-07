@@ -6,12 +6,12 @@ class UserPage extends StatefulWidget {
 }
 
 class _UserPageState extends State<UserPage> {
-  TextButton user_interface(String name, String image) {
+  TextButton user_interface(String name, String image, int id) {
     return TextButton(
       onPressed: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => NewPage()),
+          MaterialPageRoute(builder: (context) => message(name: name, image: image, id: id)),
         );
       },
       style: ButtonStyle(
@@ -55,14 +55,14 @@ class _UserPageState extends State<UserPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            user_interface("Yohanse Mehabaw", "yohanse"),
+            user_interface("Yohanse Mehabaw", "yohanse", 0),
             SizedBox(
               width: 600,
               child: Divider(
                 color: Color.fromARGB(255, 0, 0, 0),
               ),
             ),
-            user_interface("Ruth Assefa", "ruth")
+            user_interface("Ruth Assefa", "ruth", 1)
           ],
         ),
       ),
