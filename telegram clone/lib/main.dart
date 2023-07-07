@@ -13,7 +13,7 @@ TextButton user_interface(String name, String image) {
     onPressed: () {},
     style: ButtonStyle(
       backgroundColor:
-          MaterialStateProperty.all<Color>(Color.fromARGB(120, 14, 13, 13)),
+          MaterialStateProperty.all<Color>(Color.fromARGB(120, 255, 255, 255)),
     ),
     child: Row(
       children: [
@@ -27,7 +27,7 @@ TextButton user_interface(String name, String image) {
         Text(
           name,
           style: TextStyle(
-            color: Colors.white,
+            color: Colors.black,
           ),
         ),
       ],
@@ -78,7 +78,7 @@ class _StoryPageState extends State<StoryPage> {
         backgroundColor: Colors.blue,
       ),
       body: Container(
-        color: Color.fromARGB(120, 14, 13, 13),
+        color: Color.fromARGB(120, 255, 255, 255),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
