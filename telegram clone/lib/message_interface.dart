@@ -17,18 +17,26 @@ class message extends StatefulWidget {
 class _messageState extends State<message> {
   List<Widget> generatemessage(id) {
     List<Widget> user = [];
-    for (int i = 0; i < min(userMessage[id][0].length, userMessage[id][1].length); i++) {
+    for (int i = 0;
+        i < min(userMessage[id][0].length, userMessage[id][1].length);
+        i++) {
       user.add(
         Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            Padding(
-              padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
-              child: Text(
-                userMessage[id][0][i],
-                style: TextStyle(
-                  fontSize: 20,
-                  fontFamily: "BacasimeAntique",
+            Expanded(
+              flex: 2,
+              child: SizedBox(),
+            ),
+            Expanded(
+              flex: 8,
+              child: Container(
+                child: Text(
+                  userMessage[id][0][i],
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontFamily: "BacasimeAntique",
+                  ),
                 ),
               ),
             ),
@@ -44,17 +52,22 @@ class _messageState extends State<message> {
 
       user.add(
         Row(
-          mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Padding(
-              padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
-              child: Text(
-                userMessage[id][1][i],
-                style: TextStyle(
-                  fontSize: 20,
-                  fontFamily: "BacasimeAntique",
+            Expanded(
+              flex: 8,
+              child: Container(
+                child: Text(
+                  userMessage[id][1][i],
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontFamily: "BacasimeAntique",
+                  ),
                 ),
               ),
+            ),
+            Expanded(
+              flex: 2,
+              child: SizedBox(),
             ),
           ],
         ),
