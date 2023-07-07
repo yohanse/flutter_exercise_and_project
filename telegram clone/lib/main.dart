@@ -1,70 +1,19 @@
 import 'package:flutter/material.dart';
+import 'user_page.dart';
 
 void main() {
   runApp(
     MaterialApp(
-      home: StoryPage(),
+      home: OpeningPage(),
     ),
   );
 }
 
-TextButton user_interface(String name, String image) {
-  return TextButton(
-    onPressed: () {},
-    style: ButtonStyle(
-      backgroundColor:
-          MaterialStateProperty.all<Color>(Color.fromARGB(120, 255, 255, 255)),
-    ),
-    child: Row(
-      children: [
-        CircleAvatar(
-          radius: 20,
-          backgroundImage: AssetImage('images/$image.jpg'),
-        ),
-        SizedBox(
-          width: 10,
-        ),
-        Text(
-          name,
-          style: TextStyle(
-            color: Colors.black,
-          ),
-        ),
-      ],
-    ),
-  );
+class OpeningPage extends StatefulWidget {
+  _OpeningPageState createState() => _OpeningPageState();
 }
 
-class StoryPage extends StatefulWidget {
-  _StoryPageState createState() => _StoryPageState();
-}
-
-class _StoryPageState extends State<StoryPage> {
-  List body_widget = [
-    Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          CircleAvatar(
-              radius: 70,
-              backgroundImage: AssetImage('images/telegram.jpg'),
-            ),
-          TextButton(
-            onPressed: () {},
-            style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all<Color>(Colors.blue),
-            ),
-            child: Text(
-              "Start Messaging",
-              style: TextStyle(
-                color: Colors.white,
-              ),
-            ),
-          ),
-        ],
-      ),
-    ),
-  ];
+class _OpeningPageState extends State<OpeningPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -77,19 +26,39 @@ class _StoryPageState extends State<StoryPage> {
         ),
         backgroundColor: Colors.blue,
       ),
-      body: Container(
-        color: Color.fromARGB(120, 255, 255, 255),
+      body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            user_interface("Yohanse Mehabaw", "yohanse"),
+            CircleAvatar(
+              radius: 60,
+              backgroundImage: AssetImage('images/telegram.jpg'),
+            ),
             SizedBox(
-              width: 600,
-              child: Divider(
-                color:  Color.fromARGB(255, 0, 0, 0),
+              height: 15,
+            ),
+            Container(
+              height: 35,
+              width: 150,
+              child: TextButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => UserPage()),
+                  );
+                },
+                style: ButtonStyle(
+                  backgroundColor:
+                      MaterialStateProperty.all<Color>(Colors.blue),
+                ),
+                child: Text(
+                  "Start Messaging",
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
               ),
             ),
-            user_interface("Ruth Assefa", "ruth")
           ],
         ),
       ),
