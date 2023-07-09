@@ -1,4 +1,4 @@
-import 'dart:math';
+
 
 import 'package:flutter_chat_bubble/chat_bubble.dart';
 
@@ -19,23 +19,49 @@ class message extends StatefulWidget {
 class _messageState extends State<message> {
   List<Widget> generatemessage(id) {
     List<Widget> user = [];
-    for (int i = 0;
-        i < min(userMessage[id][0].length, userMessage[id][1].length);
-        i++) {
-      user.add(ChatBubble(
-        clipper: ChatBubbleClipper3(type: BubbleType.sendBubble),
-        child: Text(
-          userMessage[id][0][i],
-          style: TextStyle(color: Colors.white),
+    for (int i = 0; i < userMessage[id].length; i++) {
+      if (userMessage[id][i][1]) {
+        user.add(
+          Row(
+            children: [
+              Spacer(),
+              Expanded(
+                flex: 8,
+                child: ChatBubble(
+                  clipper: ChatBubbleClipper3(type: BubbleType.sendBubble),
+                  child: Text(
+                    userMessage[id][i][0],
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  alignment: Alignment.topRight,
+                ),
+              ),
+            ],
+          ),
+        );
+      } else {
+        user.add(
+        Row(
+          children: [
+            Expanded(
+              flex: 8,
+              child: ChatBubble(
+                clipper: ChatBubbleClipper3(type: BubbleType.receiverBubble),
+                child: Text(userMessage[id][i][0]),
+                backGroundColor: Color(0xffE7E7ED),
+              ),
+            ),
+            Spacer(), // Empty space taking 20% of the remaining horizontal space
+          ],
         ),
-        alignment: Alignment.topRight,
-      ));
+      );
+      }
 
-      user.add(ChatBubble(
-        clipper: ChatBubbleClipper3(type: BubbleType.receiverBubble),
-        child: Text(userMessage[id][1][i]),
-        backGroundColor: Color(0xffE7E7ED),
-      ));
+      user.add(
+        SizedBox(
+          height: 12,
+        ),
+      );
     }
     return user;
   }
