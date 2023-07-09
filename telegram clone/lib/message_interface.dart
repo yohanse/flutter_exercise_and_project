@@ -1,5 +1,3 @@
-
-
 import 'package:flutter_chat_bubble/chat_bubble.dart';
 
 import 'package:flutter/material.dart';
