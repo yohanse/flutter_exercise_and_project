@@ -24,7 +24,7 @@ class _OpeningPageState extends State<OpeningPage> {
             color: Colors.white,
           ),
         ),
-        backgroundColor: Colors.blue,
+        backgroundColor: const Color.fromARGB(255, 36, 114, 177),
       ),
       body: Center(
         child: Column(

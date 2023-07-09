@@ -63,7 +63,7 @@ class _UserPageState extends State<UserPage> {
             color: Colors.white,
           ),
         ),
-        backgroundColor: Colors.blue,
+        backgroundColor: const Color.fromARGB(255, 36, 114, 177),
       ),
       body: Container(
         color: Color.fromARGB(120, 255, 255, 255),

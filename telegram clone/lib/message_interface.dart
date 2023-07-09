@@ -1,5 +1,7 @@
 import 'dart:math';
 
+import 'package:flutter_chat_bubble/chat_bubble.dart';
+
 import 'package:flutter/material.dart';
 import 'data.dart';
 
@@ -20,64 +22,20 @@ class _messageState extends State<message> {
     for (int i = 0;
         i < min(userMessage[id][0].length, userMessage[id][1].length);
         i++) {
-      user.add(
-        Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            Expanded(
-              flex: 2,
-              child: SizedBox(),
-            ),
-            Expanded(
-              flex: 8,
-              child: Container(
-                child: Text(
-                  userMessage[id][0][i],
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontFamily: "BacasimeAntique",
-                  ),
-                ),
-              ),
-            ),
-          ],
+      user.add(ChatBubble(
+        clipper: ChatBubbleClipper3(type: BubbleType.sendBubble),
+        child: Text(
+          userMessage[id][0][i],
+          style: TextStyle(color: Colors.white),
         ),
-      );
+        alignment: Alignment.topRight,
+      ));
 
-      user.add(
-        SizedBox(
-          height: 25,
-        ),
-      );
-
-      user.add(
-        Row(
-          children: [
-            Expanded(
-              flex: 8,
-              child: Container(
-                child: Text(
-                  userMessage[id][1][i],
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontFamily: "BacasimeAntique",
-                  ),
-                ),
-              ),
-            ),
-            Expanded(
-              flex: 2,
-              child: SizedBox(),
-            ),
-          ],
-        ),
-      );
-
-      user.add(
-        SizedBox(
-          height: 25,
-        ),
-      );
+      user.add(ChatBubble(
+        clipper: ChatBubbleClipper3(type: BubbleType.receiverBubble),
+        child: Text(userMessage[id][1][i]),
+        backGroundColor: Color(0xffE7E7ED),
+      ));
     }
     return user;
   }
@@ -86,7 +44,7 @@ class _messageState extends State<message> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blue,
+        backgroundColor: const Color.fromARGB(255, 36, 114, 177),
         title: Row(
           children: [
             CircleAvatar(
