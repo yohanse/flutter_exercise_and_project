@@ -9,6 +9,8 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,6 +48,7 @@ class _LoginScreenState extends State<LoginScreen> {
               TextFieldInput(
                 hintText: 'Email',
                 icon: Icons.email,
+                controller: emailController,
               ),
 
               // password input field
@@ -56,6 +59,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 hintText: 'Password',
                 icon: Icons.password,
                 obscure: true,
+                controller: passwordController,
               ),
 
               // login button
@@ -83,7 +87,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                       ),
-                      ),
+                    ),
                   )
                 ],
               ),

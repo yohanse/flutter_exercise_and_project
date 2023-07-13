@@ -3,17 +3,20 @@ import 'package:flutter/material.dart';
 
 class TextFieldInput extends StatelessWidget {
   final String hintText;
+  final TextEditingController controller;
   final IconData icon;
   final bool obscure;
-  String Value = '';
-  TextFieldInput({required this.hintText, required this.icon, this.obscure = false,});
+
+  TextFieldInput(
+      {required this.hintText,
+      required this.icon,
+      this.obscure = false,
+      required this.controller});
 
   @override
   Widget build(BuildContext context) {
     return TextField(
-      onChanged: (value) {
-        Value = value;
-      },
+      controller: controller,
       decoration: InputDecoration(
         icon: Icon(icon),
         hintText: hintText,
@@ -23,9 +26,5 @@ class TextFieldInput extends StatelessWidget {
       ),
       obscureText: obscure,
     );
-  }
-
-  String getValue() {
-    return Value;
   }
 }

@@ -5,6 +5,7 @@ import 'package:second/responsive/mobile_screen_layout.dart';
 import 'package:second/responsive/reponsive.dart';
 import 'package:second/responsive/web_screen_layout.dart';
 import 'package:second/screens/login_screen.dart';
+import 'package:second/screens/signup_screen.dart';
 import 'package:second/utilities/color.dart';
 
 void main() async {
@@ -36,7 +37,7 @@ void main() async {
       //   ),
       // ),
 
-      home: LoginScreen(),
+      home: SignUpScreen(),
     ),
   );
 }
