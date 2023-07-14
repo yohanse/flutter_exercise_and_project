@@ -1,11 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:second/responsive/mobile_screen_layout.dart';
-import 'package:second/responsive/reponsive.dart';
-import 'package:second/responsive/web_screen_layout.dart';
 import 'package:second/screens/login_screen.dart';
-import 'package:second/screens/signup_screen.dart';
 import 'package:second/utilities/color.dart';
 
 void main() async {
@@ -30,14 +26,8 @@ void main() async {
       theme: ThemeData.dark().copyWith(
         scaffoldBackgroundColor: mobileBackgroundColor,
       ),
-      // home: Scaffold(
-      //   body: Responseive(
-      //     mobileScreenLayout: MobileScreenLayout(),
-      //     webScreenLayout: WebScreenLayout(),
-      //   ),
-      // ),
 
-      home: SignUpScreen(),
+      home: const LoginScreen(),
     ),
   );
 }

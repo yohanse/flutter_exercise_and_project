@@ -1,7 +1,12 @@
-import 'package:flutter/material.dart';
-import 'package:second/logics/auth_method.dart';
+import 'dart:typed_data';
 
-import '../widget/text_field.dart';
+import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:second/logics/auth_method.dart';
+import 'package:second/logics/image_picker.dart';
+import 'package:second/responsive/snack_bar.dart';
+import 'package:second/screens/login_screen.dart';
+
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -11,10 +16,23 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
+
   final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController bioController = TextEditingController();
+  Uint8List? _image;
+  bool _isLoading = false;
+
+  @override
+  void dispose() {
+    super.dispose();
+    nameController.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+    bioController.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,7 +47,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.05,
                 ),
-
                 Text(
                   'Instagram',
                   style: TextStyle(
@@ -41,18 +58,30 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 SizedBox(
                   height: 10,
                 ),
-
                 Stack(
                   children: [
-                    CircleAvatar(
-                      backgroundImage: AssetImage('images/instagram_logo.jpg'),
-                      radius: 60,
-                    ),
+                    _image != null
+                        ? CircleAvatar(
+                            backgroundImage: MemoryImage(_image!),
+                            radius: 60,
+                          )
+                        : CircleAvatar(
+                            backgroundImage:
+                                AssetImage('images/defaultPerson.png'),
+                            radius: 60,
+                          ),
                     Positioned(
                       bottom: -12,
                       left: 74,
                       child: IconButton(
-                        onPressed: () {},
+                        onPressed: () async {
+                          Uint8List? _im = await imagePick(ImageSource.gallery);
+                          if (_im != null) {
+                            setState(() {
+                              _image = _im;
+                            });
+                          }
+                        },
                         icon: Icon(Icons.add_a_photo),
                       ),
                     ),
@@ -61,79 +90,99 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 SizedBox(
                   height: 12,
                 ),
-
                 SizedBox(
                   height: 15,
                 ),
                 TextField(
                   decoration: InputDecoration(
                     hintText: 'Enter your name',
-                    prefixIcon: Icon(Icons.person),
+                    icon: Icon(Icons.person),
                   ),
                   controller: nameController,
                 ),
-
                 SizedBox(
                   height: 15,
                 ),
                 TextField(
                   decoration: InputDecoration(
                     hintText: 'Enter Your email',
-                    prefixIcon: Icon(Icons.email),
+                    icon: Icon(Icons.email),
                   ),
                   controller: emailController,
                 ),
-
                 SizedBox(
                   height: 15,
                 ),
                 TextField(
                   decoration: InputDecoration(
                     hintText: 'Enter your password',
-                    prefixIcon: Icon(Icons.password),
+                    icon: Icon(Icons.password),
                   ),
                   obscureText: true,
                   controller: passwordController,
                 ),
-
                 SizedBox(
                   height: 10,
                 ),
                 TextField(
                   decoration: InputDecoration(
                     hintText: 'Enter your bio',
-                    prefixIcon: Icon(Icons.edit),
+                    icon: Icon(Icons.edit),
                   ),
                   controller: bioController,
                 ),
-
                 SizedBox(
                   height: 18,
                 ),
-                ElevatedButton(
-                  onPressed: () async {
-                    String res = await AuthMethod().sigupUser(
-                      nameController.text,
-                      emailController.text,
-                      passwordController.text,
-                      bioController.text,
-                    );
+                Container(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    onPressed: () async {
+                      setState(() {
+                        _isLoading = true;
+                      });
 
-                    print(res);
-                  },
-                  child: Text("Sign Up"),
+                      String res = await AuthMethod().sigupUser(
+                        nameController.text,
+                        emailController.text,
+                        passwordController.text,
+                        bioController.text,
+                        _image!,
+                      );
+
+                      setState(() {
+                        _isLoading = false;
+                      });
+
+                      if (res != 'sucess') {
+                        showSnackBar(res, context);
+                      }
+                    },
+                    child: _isLoading
+                        ? Center(
+                            child: CircularProgressIndicator(
+                              color: Colors.white,
+                            ),
+                          )
+                        : Text("Sign Up"),
+                  ),
                 ),
-
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.1,
                 ),
-
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text("Do you have an account already?"),
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => LoginScreen(),
+                          ),
+                        );
+                      },
                       child: Text(
                         "Log In",
                         style: TextStyle(
