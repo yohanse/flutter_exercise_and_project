@@ -154,8 +154,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         _isLoading = false;
                       });
 
-                      if (res != 'sucess') {
+                      if (res != 'Success') {
                         showSnackBar(res, context);
+                      }
+
+                      else{
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => MyWidget(),
+                          ),
+                        );
                       }
                     },
                     child: _isLoading

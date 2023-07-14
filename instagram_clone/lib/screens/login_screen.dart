@@ -54,7 +54,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   icon: Icons.email,
                   controller: emailController,
                 ),
-        
+
                 // password input field
                 const SizedBox(
                   height: 10,
@@ -65,7 +65,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   obscure: true,
                   controller: passwordController,
                 ),
-        
+
                 // login button
                 const SizedBox(
                   height: 18,
@@ -80,23 +80,27 @@ class _LoginScreenState extends State<LoginScreen> {
                       setState(() {
                         _isLoading = false;
                       });
-                      if (res != 'Succes') {
+                      if (res != 'Success') {
                         showSnackBar(res, context);
-                      }
-                      else{
-                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => ))
+                      } else {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => MyWidget(),
+                          ),
+                        );
                       }
                     },
                     child: _isLoading == false
                         ? Text("Login")
-                        : CircularProgressIndicator( 
+                        : CircularProgressIndicator(
                             color: Colors.white,
                           )),
-        
+
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.25,
                 ),
-        
+
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -124,6 +128,19 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class MyWidget extends StatelessWidget {
+  const MyWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Scaffold(
+      body: Center(
+        child: Text("Login sucess"),
       ),
     );
   }
