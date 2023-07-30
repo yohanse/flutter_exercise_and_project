@@ -15,7 +15,7 @@ class _TaskScreensState extends State<TaskScreens> {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
         onPressed: () {
           TextEditingController _addTask = TextEditingController();
           showDialog(
@@ -40,10 +40,10 @@ class _TaskScreensState extends State<TaskScreens> {
                 left: 30,
                 bottom: 30,
               ),
-              child: const Column(
+              child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  CircleAvatar(
+                  const CircleAvatar(
                     backgroundColor: Colors.white,
                     radius: 30,
                     child: Icon(
@@ -52,10 +52,10 @@ class _TaskScreensState extends State<TaskScreens> {
                       color: Colors.lightBlueAccent,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
-                  Text(
+                  const Text(
                     "Todoey",
                     style: TextStyle(
                       fontWeight: FontWeight.w700,
@@ -64,13 +64,13 @@ class _TaskScreensState extends State<TaskScreens> {
                     ),
                   ),
                   Text(
-                    "12 Tasks",
-                    style: TextStyle(
+                    "${data.length} Tasks",
+                    style: const TextStyle(
                       color: Colors.white,
                       fontSize: 20,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: double.infinity,
                   )
                 ],
