@@ -3,10 +3,10 @@ import 'package:second/utilities/dimension.dart';
 
 class Responseive extends StatelessWidget {
   final Widget webScreenLayout, mobileScreenLayout;
-  const Responseive(
-      {super.key,
-      required this.webScreenLayout,
-      required this.mobileScreenLayout});
+  const Responseive({
+    required this.webScreenLayout,
+    required this.mobileScreenLayout,
+  });
 
   @override
   Widget build(BuildContext context) {
