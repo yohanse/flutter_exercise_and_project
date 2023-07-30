@@ -19,6 +19,7 @@ class NameCheckBox extends StatelessWidget {
         Text(
           text,
           style: TextStyle(
+            fontSize: 18,
             decoration: isChecked ? TextDecoration.lineThrough : null,
           ),
         ),
