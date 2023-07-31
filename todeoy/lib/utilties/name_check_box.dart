@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 
-class NameCheckBox extends StatelessWidget {
+
+class NameCheckBox extends StatelessWidget {    
   final String text;
   final bool isChecked;
   final Function function;
